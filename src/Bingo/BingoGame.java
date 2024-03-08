@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class BingoGame implements Runnable{
     List<BingoCard> cards;
-    boolean[] result;
+    static boolean[] result;
     boolean bingo; // shared between threads
     @Override
     public void run() {

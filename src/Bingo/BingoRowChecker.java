@@ -10,8 +10,14 @@ public class BingoRowChecker extends BingoChecker{
     @Override
     public void run() {
         for (int col=0; col < 5; col++) {
+            int num=0;
             // get the number at this row and col
-            // wait until result[num] is true
+            synchronized (BingoGame.result) {
+                try {
+                    BingoGame.result.wait();
+                } catch (InterruptedException e) {
+                }
+            }
         }
         System.out.println("Card " + card.id + " finishes row " +(row+1));
         System.out.println(card);
