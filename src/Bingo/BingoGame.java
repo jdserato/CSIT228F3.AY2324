@@ -21,6 +21,11 @@ public class BingoGame implements Runnable{
             System.out.println("Card " + card.id);
             System.out.println(card);
         }
+        // 3: CHECKERS
+        List<Thread> threads = new ArrayList<>();
+        for (BingoCard card : cards) {
+            threads.add(new Thread(new BingoRowChecker(card, 3)));
+        }
         // 2: RANDOM NUMS
         while (!bingo) {
         /*
