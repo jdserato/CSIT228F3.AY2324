@@ -6,6 +6,8 @@ import java.util.Scanner;
 
 public class BingoGame implements Runnable{
     List<BingoCard> cards;
+    boolean[] result;
+    boolean bingo; // shared between threads
     @Override
     public void run() {
         System.out.print("How many players?");
@@ -18,6 +20,17 @@ public class BingoGame implements Runnable{
         for (BingoCard card : cards) {
             System.out.println("Card " + card.id);
             System.out.println(card);
+        }
+        // 2: RANDOM NUMS
+        while (!bingo) {
+        /*
+            - generate a random number num
+            - set the result at index num to TRUE
+            - outputs the number chosen
+            - prints out all numbers chosen numerically in the same line
+            - notifies those waiting for result
+            - sleeps for 300 milliseconds
+         */
         }
     }
 }

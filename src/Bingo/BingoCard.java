@@ -6,6 +6,7 @@ public class BingoCard {
 
     public BingoCard(int id) {
         this.id = id;
+        nums = new int[5][5];
         // TODO randomize the nums, no duplicates
         // B: 01-15
         // I: 16-30
