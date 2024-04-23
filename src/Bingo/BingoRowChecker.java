@@ -9,17 +9,17 @@ public class BingoRowChecker extends BingoChecker{
 
     @Override
     public void run() {
+        boolean isNotInterrupted = false;
         for (int col=0; col < 5; col++) {
-            int num=0;
             // get the number at this row and col
-            synchronized (BingoGame.result) {
-                try {
-                    BingoGame.result.wait();
-                } catch (InterruptedException e) {
-                }
+            BingoCell cell = card.nums[row][col];
+            isNotInterrupted = waitForMe(cell);
+            if (!isNotInterrupted) {
+                return;
             }
         }
-        System.out.println("Card " + card.id + " finishes row " +(row+1));
-        System.out.println(card);
+        System.out.println("Card " + card.id + " finishes row " + (row + 1));
+
+//        System.out.println(card);
     }
 }

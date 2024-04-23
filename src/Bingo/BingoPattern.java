@@ -22,5 +22,26 @@ public abstract class BingoPattern implements Runnable{
             - output "Card [id] completes pattern" while
             printing all elements in card form
          */
+        List<Thread> threads = new ArrayList<>();
+        for (BingoChecker checker : checkers) {
+            threads.add(new Thread(checker));
+        }
+        for (Thread t : threads) {
+            t.start();
+        }
+        for (Thread t : threads) {
+            try {
+                t.join();
+            } catch (InterruptedException e) {
+                System.out.println("Card " + card.id + " loses");
+                for (Thread t2 : threads) {
+                    t2.interrupt();
+                }
+                return;
+            }
+        }
+        BingoGame.bingo = true;
+        System.out.println("Card " + card.id + " completes pattern");
+        System.out.println(card);
     }
 }
